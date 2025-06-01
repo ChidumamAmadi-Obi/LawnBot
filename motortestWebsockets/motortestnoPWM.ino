@@ -3,7 +3,6 @@
 #include <WebSocketsServer.h>
 
 #include "index.h" //string of html file
-#include "SSID.h"    //holds SSID information
 
 #define PWM2 0 //pins that control motor driver
 #define PWM1 1
