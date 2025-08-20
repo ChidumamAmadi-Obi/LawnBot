@@ -15,10 +15,6 @@ The project combines **custom hardware (PCB design)**, **embedded software in C/
 <img width="771" height="401" alt="Screenshot 2025-08-20 164518" src="https://github.com/user-attachments/assets/2472b3a8-05fd-46f1-a19e-66e5a8c821b2" />
 PCB 3d render
 
-[Schematic PDF.pdf](https://github.com/user-attachments/files/21900834/Schematic.PDF.pdf)
-Schematic
-
-
 ## 🚀 Next Steps  
 - Add obstacle detection and safety features  
 - Improve web interface for real-time telemetry and smoother control  
