@@ -2,23 +2,20 @@
 #include <WebServer.h>
 #include <WebSocketsServer.h>
 
-#include "index.h" //string of html file
+#include "WebPage.h" //string of html file
 
-#define PWM2 0 //pins that control motor driver
+#define PWM2 0
 #define PWM1 1
 #define DIR2 2
 #define DIR1 3
 
-#define bdlcPin 16 //pins that control brushless motor
-#define WiFiPin    //pin that controls LED that signals WiFi connection
+#define bdlcPin 16
+#define WiFiPin 17 //pin that controls LED that signals WiFi connection
 
 // #define LED_BUILTIN 2 //when using esp32
 
 WebServer server(80);  
 WebSocketsServer webSocket = WebSocketsServer(81); 
-
-// using websockets, we can have we lightning fast full duplex communication 
-// between the pico and client 🔥🔥, no need to reload the page after every update
 
 void setup() {
   Serial.begin(115200);       
@@ -95,22 +92,14 @@ void loop() {
       }
 
       if (message == "CMD_backward_on") {
-        motorsON();
-        backwardDrive();
-      }
-      else if (message == "CMD_left_on") {
-        motorsON();
-        leftTurn();
-      }
-      else if (message == "CMD_right_on") {
-        motorsON();
-        rightTurn();
-      }
-      else if (message == "CMD_forward_on") {
-        motorsON();
-        forwardDrive();
-      }
-      else if (message == "CMD_motors_off") {
+        motorControl(true,2);
+      } else if (message == "CMD_left_on") {
+        motorControl(true,3);
+      } else if (message == "CMD_right_on") {
+        motorControl(true,4);
+      } else if (message == "CMD_forward_on") {
+        motorControl(true,1);
+      } else if (message == "CMD_motors_off") {
         motorsOFF();
       }
 
@@ -123,41 +112,47 @@ void loop() {
   void toggleBlade(int a){
     switch(a){
       case 1:
-      digitalWrite(bdlcPin, 0);
-      break;
-
+        digitalWrite(bdlcPin, 0);
+        break;
+  
       case 2:
-      digitalWrite(bdlcPin, 1);
-      break;
-    }
+        digitalWrite(bdlcPin, 1);
+        break;
+      }
   }
 // custom motor functions
-
+  
   void motorsOFF() { 
     analogWrite(PWM2,0);
     analogWrite(PWM1,0);
   }
-    void motorsON() { 
-    analogWrite(PWM2,255);
-    analogWrite(PWM1,255);
-  }
 
-  void forwardDrive() { 
-    digitalWrite(DIR1,LOW);
-    digitalWrite(DIR2,HIGH);
-  }
+  void motorControl(bool power, int direction) {
+    if (power) {
 
-  void backwardDrive(){
-    digitalWrite(DIR1,HIGH);
-    digitalWrite(DIR2,LOW);
-  }
+      analogWrite(PWM2,255);
+      analogWrite(PWM1,255);
 
-  void rightTurn(){
-    digitalWrite(DIR1,LOW);
-    digitalWrite(DIR2,LOW);
-  }
+      switch(direction) {
+        case 1: // Forward
+          digitalWrite(DIR1,LOW);
+          digitalWrite(DIR2,HIGH);
+        break;
 
-  void leftTurn(){
-    digitalWrite(DIR1,HIGH);
-    digitalWrite(DIR2,HIGH);
+        case 2: // Backward
+          digitalWrite(DIR1,HIGH);
+          digitalWrite(DIR2,LOW);
+        break;
+
+        case 3: // Left
+          digitalWrite(DIR1,HIGH);
+          digitalWrite(DIR2,HIGH);
+        break; 
+
+        case 4: // Right
+          digitalWrite(DIR1,LOW);
+          digitalWrite(DIR2,LOW);
+        break;
+      }
+    }
   }
