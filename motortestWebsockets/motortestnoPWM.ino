@@ -10,9 +10,7 @@
 #define DIR1 3
 
 #define bdlcPin 16
-#define WiFiPin 17 //pin that controls LED that signals WiFi connection
-
-// #define LED_BUILTIN 2 //when using esp32
+#define WiFiPin 17
 
 WebServer server(80);  
 WebSocketsServer webSocket = WebSocketsServer(81); 
@@ -28,7 +26,7 @@ void setup() {
   pinMode(PWM1, OUTPUT);
   pinMode(PWM2, OUTPUT);   
 
-  digitalWrite(bdlcPin, 0); //makes sure the blade is not spinning   
+  digitalWrite(bdlcPin, 0); 
  
   WiFi.begin(SSID, PASSWORD); 
   Serial.println("Establishing connection to WiFi with SSID: " + String(SSID));
@@ -47,12 +45,12 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   server.on("/", []() {
-      server.send(200, "text/html", webpage);   // 200 is the http respond code
-  });                                           // "text/html" lets it know we will be sending an html file
+      server.send(200, "text/html", webpage);  
+  });                                         
 
   server.begin();
   webSocket.begin();
-  webSocket.onEvent(webSocketEvent); //whenever something happens in the websocket, the function gets called
+  webSocket.onEvent(webSocketEvent);
 }
  
 void loop() {
@@ -60,30 +58,25 @@ void loop() {
   webSocket.loop();
 }
 
-// webSocketEvent function
-  void webSocketEvent(byte num, WStype_t type, uint8_t * payload, size_t length){
-    //num = client number, identifies which client send you what
-    //WStype_t = type of event you decieve
-    //payload
-    //size_t = length of array
 
-    switch (type) {                                     // switch on the type of information sent
-    case WStype_DISCONNECTED:                           // if a client is disconnected, then type == WStype_DISCONNECTED
+  void webSocketEvent(byte num, WStype_t type, uint8_t * payload, size_t length){
+
+    switch (type) {                                     
+    case WStype_DISCONNECTED:                          
       Serial.println("Client " + String(num) + " disconnected");
       digitalWrite(LED_BUILTIN,LOW);
       break;
 
-    case WStype_CONNECTED:                              // if a client is connected, then type == WStype_CONNECTED
+    case WStype_CONNECTED:                             
       Serial.println("Client " + String(num) + " connected");
-      // optionally you can add code here what to do when connected
       break;
 
-    case WStype_TEXT:                                   // if a client has sent data to the server, then type == WStype_TEXT
-      for (int i=0; i<length; i++) {                    // print received data from client
+    case WStype_TEXT:                                   
+      for (int i=0; i<length; i++) {                   
         Serial.print((char)payload[i]);
       }
 
-      String message = String((char*)payload); // holds the message in a variable 
+      String message = String((char*)payload); 
 
       if(message == "CMD_blade_on"){
         toggleBlade(2);
@@ -108,7 +101,6 @@ void loop() {
     }
   }
 
-// custom brushless motor function
   void toggleBlade(int a){
     switch(a){
       case 1:
@@ -120,7 +112,6 @@ void loop() {
         break;
       }
   }
-// custom motor functions
   
   void motorsOFF() { 
     analogWrite(PWM2,0);
