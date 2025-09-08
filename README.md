@@ -4,11 +4,10 @@ The robot is designed to mow lawns autonomously or via manual control over a web
 
 The project combines **custom hardware (PCB design)**, **embedded software in C/C++**, and a lightweight **web UI** for control and testing.
 
-## 🔧 Current Features
-- Custom PCB designed and assembled for robot control circuitry  
-- Basic motor control via DrRobot driver  
+## 🔧 Current Features 
 - Wi-Fi connectivity established through Pico 2 W  
-- WebSocket communication pipeline between Pico and browser  
+- WebSocket communication pipeline between Pico and browser
+- Basic motor control via DrRobot driver  
 - Test web interface for manual control (arrows, toggles, etc.)
 
 ## 🖼️ Preview
