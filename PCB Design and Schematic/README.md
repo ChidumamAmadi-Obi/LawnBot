@@ -12,5 +12,5 @@ Current PCB validated the core functionality od the LawnBot, but after testing s
 * Motor Driver Support: Circuit refinements to help the driver handle transients and reduce thermal stress. (Thicker tracks for higher currents, isolating motor driver from other more noise sensitive components).
 * Debug-Friendly Design: Indicator LEDs for status monitoring, labeled headers, and test points for multimeter/oscilloscope probes.
 * Better Documentation: A cleaner schematic and clearer silkscreen labeling to improve readability and handoff for other engineers.
-
+    <img width="771" height="401" alt="Screenshot 2025-08-20 164518" src="https://github.com/user-attachments/assets/2472b3a8-05fd-46f1-a19e-66e5a8c821b2" />
     <img width="292" height="171" alt="image" src="https://github.com/user-attachments/assets/4da2c928-9d13-4071-955b-00709c5b8258" />
