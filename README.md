@@ -26,6 +26,11 @@ https://github.com/user-attachments/assets/61cf3d1b-3d2a-4180-a658-3717f7e33744
 - **12V Brushless DC motor with ESC**
 - **Li-ion battery pack**
 
+## How It Works
+The Pico handles incoming HTTP requests, proccess WebSocket events, communicates to the client and controls motors with Core 0, while also cmonitoring sensor readings at set intervals with Core 1.
+<img width="542" height="590" alt="Screenshot 2025-09-08 230700" src="https://github.com/user-attachments/assets/836259c3-f779-47ca-b192-80ea4b2cd4ad" />
+*Flowchart of code flow*
+
 ## PCB Development
 first PCB was successfully designed, manufactured, and tested.
 - ✅ Verified core functionality: Pico W2, motor driver, and power delivery
