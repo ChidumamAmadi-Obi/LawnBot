@@ -58,9 +58,18 @@ const char* SSID = "YOUR_SSID";
 const char* PASSWORD = "YOUR_PASSWORD";
 ```
 5) Connect sensors and motors as per wiring diagram
+```
+  //PIN CONFIG
+  constexpr uint8_t PWM2 = 0;
+  constexpr uint8_t PWM1 = 1;
+  constexpr uint8_t DIR2 = 2;
+  constexpr uint8_t DIR1 = 3;
+  constexpr uint8_t BDLC_PWM_PIN = 16;
+  constexpr uint8_t WIFI_LED_PIN = 17;
+```
 <img width="785" height="591" alt="image" src="https://github.com/user-attachments/assets/3da6f02e-182f-440f-a1f8-668f92b3b850" />
-6) Save this header file, and flash the code onto the Pico
-7) Connect to the Pico's WiFi network and open the web interface for control
+7) Save this header file, and flash the code onto the Pico
+8) Connect to the Pico's WiFi network and open the web interface for control
 
 ## 🚀 Road Map
 - [x] **Wifi connectivity**
