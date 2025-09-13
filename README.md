@@ -76,7 +76,7 @@ const char* PASSWORD = "YOUR_PASSWORD";
 - [x] **Manual WebSocket control** - Full duplex communitation between client and robot
 - [x] **Object Detection** - For future path finding and obstacle avoidance
 - [x] **PCB Prototype** - For proof of concept
-- [ ] **Motor Encoder Integration** - For precise odometry
+- [x] **Motor Encoder Integration** - For precise odometry
 - [ ] **Full Telemetrics dashboard** — status, speed, battery level, connection quality
 - [ ] **3D Printing Housing anc Chasis** - for a cost effective build and ease of use
 - [ ] **Outdoor testing suite** — reliability, battery endurance, mower performance
