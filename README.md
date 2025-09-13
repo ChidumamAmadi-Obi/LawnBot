@@ -1,7 +1,7 @@
 # LawnBot (In Progress)
 
 ![In Progress Badge](https://img.shields.io/badge/status-in%20progress-orange)  
-This repository documents the development of a **Wi-Fi-controlled lawn mowing robot** built around a **Raspberry Pi Pico 2 W** and a **DrRobot motor driver**. The robot is designed to mow lawns autonomously or via manual control over a web interface. 
+This repository documents the development of a **Wi-Fi-controlled lawn mowing robot** built around a **Raspberry Pi Pico 2 W**. The system uses the Pico's dual-core processor to efficiently handle real-time sensor data, motor control, and network communication concurrently.
 
 The project combines **custom hardware (PCB design)**, **embedded software in C/C++**, and a lightweight **web UI** for control and testing.
 
@@ -27,7 +27,31 @@ https://github.com/user-attachments/assets/61cf3d1b-3d2a-4180-a658-3717f7e33744
 - **Li-ion battery pack**
 
 ## How It Works
-The Pico handles incoming HTTP requests, proccess WebSocket events, communicates to the client and controls motors with Core 0, while also cmonitoring sensor readings at set intervals with Core 1.
+
+### Core 0: Communication and Control
+ This core runs the main Arduino loop and handles all network and control tasks.
+ 1) On boot, core 0 **connects to Wifi and starts a web server** to serve te control interface *Webpage.h*, and initializes the WebSocket server.
+ 2) The *webSocketEvent()* function acts as the **main command parser** for incoming messages from the web UI.
+ 3) The *loop()* calls *handleMotorControl(motorSpeed, direction)*, which **translates the direction and speed into the correct PWM and digital signals for the motor driver**.
+ 4) Every second, the *loop()* calls *createJSON()*:
+    * Locks Mutex to safely read the shared sensor data without risking corruption from Core 1.
+    * Serializes the data into a JSON string.
+    * **Broadcasts the JSON string to all connected web clients** via *webSocket.broadcastTXT()*.
+
+ ### Core 1: Real-Time Sensor Reading
+ This core is dedicated to reading sensors and calculating odometry with precise timing, independant of network latency.
+ 1) The core **initializes GPIO interrupts** on the encoder pins. Every change on these pins triggers an Interrupt Service Routine *(isrEncoder1(), isrEncoder2())*.
+    * The **ISRs decode the quadrature signals** to determine the direction the motors are currently spinning. (happens in the background with minimal CPU usage).
+2) In core 1's main loop, it **checks the ToF sensor every 100ms**, and if so:
+   * Locks the Mutex and updates the shared *objectDistance* variable.
+   * Sets the *objectDetectionWarning* flag if an object is closer than the *TOF_THRESHOLD*.
+3) Every 250ms, *handleEncoders()* is called:
+   * Temporarily disables interrupts to safely read and reser the *periodEncoderCount* variables.
+   * **Calculates RPM of each motor**
+   * Calls updateOdometry() to **calculate the total distance traveled by each wheel** using the *totalEncoderCount*.
+```
+RPM = (pulses_in_interval * 60) / (PULSES_PER_REVOLUTION * interval_in_seconds)
+```
 
 <img width="542" height="590" alt="Screenshot 2025-09-08 230700" src="https://github.com/user-attachments/assets/836259c3-f779-47ca-b192-80ea4b2cd4ad" />
 
