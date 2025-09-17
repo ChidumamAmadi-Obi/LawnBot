@@ -10,17 +10,15 @@ unsigned long prevTOFScan = 0;
 
 uint8_t direction;
 uint8_t motorSpeed = 255;
-bool cutting = 0;
-uint8_t state = 0;
+uint8_t state = 0, temp = 0;
+bool cutting = false;
+bool control = false; // manual
 volatile uint8_t objectDistance;
 volatile bool objectDetectionWarning = false;
-bool control = false; // manual
-uint8_t temp = 0;
 
-uint16_t rpm1 = 0;
-uint16_t rpm2 = 0;
-int coordX = 0;
-int coordY = 0;
+volatile uint16_t rpm1 = 0,         rpm2 = 0;
+volatile int coordX = 0,            coordY = 0;
+volatile float distanceLeft = 0.0,  distanceRight= 0.0;
 
 WebServer server(80);  
 WebSocketsServer webSocket = WebSocketsServer(81); 

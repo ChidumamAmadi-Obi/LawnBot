@@ -60,7 +60,6 @@ void webSocketEvent(byte num, WStype_t type, uint8_t * payload, size_t length){
     break;
   }
 }
-
 void handleWifiConnection(){
   WiFi.begin(SSID, PASSWORD); 
   debugWiFiln("Establishing connection to WiFi with SSID: " + String(SSID));
@@ -76,27 +75,26 @@ void handleWifiConnection(){
 
   server.on("/", []() {
     server.send(200, "text/html", webpage);   // 200 is the http respond code
-  });                                           // "text/html" lets it know we will be sending an html file
+  });                                         // "text/html" lets it know we will be sending an html file
 
   server.begin();
   webSocket.begin();
-  webSocket.onEvent(webSocketEvent); //whenever something happens in the websocket, the function gets called
+  webSocket.onEvent(webSocketEvent); 
 }
-
 String createJSON(){
   String jsonString = "";
   JsonDocument tx_doc;
   JsonObject jsonOBJ = tx_doc.to<JsonObject>(); // create object
 
+  mutex_enter_blocking(&sensorMutex);
   jsonOBJ["STATUS"] = state;
   jsonOBJ["X"] = coordX;
   jsonOBJ["Y"] = coordY;
-  mutex_enter_blocking(&sensorMutex);
   jsonOBJ["OBJ_DISTANCE"] = objectDistance;
-  mutex_exit(&sensorMutex);
   jsonOBJ["STATUS"] = state;
   jsonOBJ["RPM_1"] = rpm1;
   jsonOBJ["RPM_2"] = rpm2;
+  mutex_exit(&sensorMutex);  
   
   serializeJson(tx_doc, jsonString);
 

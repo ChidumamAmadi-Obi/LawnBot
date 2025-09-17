@@ -11,22 +11,19 @@
 void toggleBlade(uint8_t power){
   switch(power){
     case 0:
-    digitalWrite(Config::BDLC_PWM_PIN, 0);
-    break;
-
+      digitalWrite(Config::BDLC_PWM_PIN, 0);
+      break;
     case 1:
-    digitalWrite(Config::BDLC_PWM_PIN, 1);
-    break;
+      digitalWrite(Config::BDLC_PWM_PIN, 255);
+      break;
   }
 }
-
 void motorsOFF() { 
   analogWrite(Config::PWM2,0);
   analogWrite(Config::PWM1,0);
   digitalWrite(Config::DIR1,LOW);
-  digitalWrite(Config::DIR1,LOW);
+  digitalWrite(Config::DIR2,LOW);
 }
-
 void handleMotorControl(uint8_t motorSpeed, uint8_t direction) {
   if (direction > 0) {
     analogWrite(Config::PWM2,motorSpeed);

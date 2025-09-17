@@ -27,9 +27,14 @@ void setup() {
   pinMode(Config::PWM2,OUTPUT);
   pinMode(Config::DIR1,OUTPUT);
   pinMode(Config::DIR2,OUTPUT);
+  pinMode(Config::BDLC_PWM_PIN,OUTPUT);
+
+  pinMode(Config::M1_PHASE_A,INPUT_PULLUP);
+  pinMode(Config::M1_PHASE_B,INPUT_PULLUP);
+  pinMode(Config::M2_PHASE_A,INPUT_PULLUP);
+  pinMode(Config::M2_PHASE_B,INPUT_PULLUP);
 
   pinMode(Config::WIFI_LED_PIN,OUTPUT);
-  pinMode(Config::BDLC_PWM_PIN,OUTPUT);
 
   multicore_reset_core1();
   multicore_launch_core1(core1_entry);
@@ -42,10 +47,8 @@ void loop() {
   server.handleClient();
   webSocket.loop();
 
-  //create json file
   json = createJSON();
 
-  //send sensor readings
   currentMillis = millis();
   if ( currentMillis - prevMillis >= Config::JSON_SENDING_INVERVAL) {
     webSocket.broadcastTXT(json);
@@ -53,13 +56,14 @@ void loop() {
   }
   webSocket.broadcastTXT(json);
 
-  //handle motor control
   handleMotorControl(motorSpeed,direction);
 }
+
 void core1_entry() {
+  initEncoders();
   while (true) {
-    //handles sensor readings
     readTOFSensor();
+    handleEncoders();
     delay(10);
   }
 }
