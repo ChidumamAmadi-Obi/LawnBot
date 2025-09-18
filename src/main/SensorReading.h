@@ -1,3 +1,6 @@
+#ifndef SENSOR_READINGS 
+#define SENSOR_READINGS 
+
 #include "Config.h"
 
 #if DEBUG_SENSOR_READINGS
@@ -110,4 +113,4 @@ void handleEncoders() {
   }
 }
 
-
+#endif
