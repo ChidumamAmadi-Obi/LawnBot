@@ -1,3 +1,6 @@
+#ifndef CONFIG
+#define CONFIG 
+
 #include "Config.h"
 
 #if DEBUG_MOTORS
@@ -61,4 +64,6 @@ void handleMotorControl(uint8_t motorSpeed, uint8_t direction) {
   } else {
     toggleBlade(false);
   }
+
 }
+#endif
