@@ -1,3 +1,6 @@
+#ifndef WIFI
+#define WIFI
+
 #include "Config.h"
 #include <WiFi.h>
 #include <WebServer.h>
@@ -98,7 +101,10 @@ String createJSON(){
   
   serializeJson(tx_doc, jsonString);
 
+  #endif
+
   debugWebSocket("SENT ->> "); debugWebSocketln(jsonString);
     
   return jsonString;
 }
+
