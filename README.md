@@ -7,7 +7,9 @@ The project combines **custom hardware (PCB design)**, **embedded software in C/
 ## Preview 
 Realtime WebSocket communication Demo
 
-https://github.com/user-attachments/assets/61cf3d1b-3d2a-4180-a658-3717f7e33744
+[](https://github.com/user-attachments/assets/61cf3d1b-3d2a-4180-a658-3717f7e33744)
+
+![](https://github.com/user-attachments/assets/61cf3d1b-3d2a-4180-a658-3717f7e33744)
 
 ## 🔧 Current Features 
 - Wi-Fi connectivity established through Pico 2 W  
