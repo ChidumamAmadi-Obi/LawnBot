@@ -95,14 +95,3 @@ const char* PASSWORD = "YOUR_PASSWORD";
 <img width="785" height="591" alt="image" src="https://github.com/user-attachments/assets/3da6f02e-182f-440f-a1f8-668f92b3b850" />
 7) Save this header file, and flash the code onto the Pico
 8) Connect to the Pico's WiFi network and open the web interface for control
-
-## 🚀 Road Map
-- [x] **Wifi connectivity**
-- [x] **Manual WebSocket control** - Full duplex communitation between client and robot
-- [x] **Object Detection** - For future path finding and obstacle avoidance
-- [x] **PCB Prototype** - For proof of concept
-- [x] **Motor Encoder Integration** - For precise odometry
-- [ ] **Full Telemetrics dashboard** — status, speed, battery level, connection quality
-- [ ] **3D Printing Housing anc Chasis** - for a cost effective build and ease of use
-- [ ] **Outdoor testing suite** — reliability, battery endurance, mower performance
-- [ ] **Autonomous mowing mode** — full autonomy in addition to manual mode
