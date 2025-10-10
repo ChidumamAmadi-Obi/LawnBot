@@ -92,6 +92,8 @@ const char* PASSWORD = "YOUR_PASSWORD";
   constexpr uint8_t BDLC_PWM_PIN = 16;
   constexpr uint8_t WIFI_LED_PIN = 17;
 ```
-<img width="785" height="591" alt="image" src="https://github.com/user-attachments/assets/3da6f02e-182f-440f-a1f8-668f92b3b850" />
+
+<img width="955" height="718" alt="image" src="https://github.com/user-attachments/assets/50224ca0-6d88-49c3-a055-8e73274b32b6" />
+
 7) Save this header file, and flash the code onto the Pico
 8) Connect to the Pico's WiFi network and open the web interface for control
