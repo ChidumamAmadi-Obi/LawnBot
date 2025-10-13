@@ -64,7 +64,6 @@ void handleMotorControl(uint8_t motorSpeed, uint8_t direction) {
   } else {
     toggleBlade(false);
   }
-
 }
-#endif
 
+#endif

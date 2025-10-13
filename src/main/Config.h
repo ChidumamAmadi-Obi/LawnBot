@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CONFIG
+#define CONFIG
+
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WebServer.h>
@@ -93,3 +95,5 @@ extern WebSocketsServer webSocket;
 extern String json;
 extern String pastjson;
 extern mutex_t sensorMutex;
+
+#endif
