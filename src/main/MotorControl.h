@@ -1,5 +1,5 @@
-#ifndef CONFIG
-#define CONFIG 
+#ifndef MOTOR_CONTROL
+#define MOTOR_CONTROL
 
 #include "Config.h"
 
@@ -67,3 +67,4 @@ void handleMotorControl(uint8_t motorSpeed, uint8_t direction) {
 
 }
 #endif
+
