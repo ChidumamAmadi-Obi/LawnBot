@@ -8,7 +8,6 @@ const uint8_t ENCODER_2_B = 7; // Right Motor - Channel B
 const uint8_t ENCODER_PPR = 11; // Pulses Per Revolution 
 const int RPM_INTERVAL_MS = 250; 
 const float WHEEL_RADIUS = 0.05; // cm radius 
-const float WHEEL_BASE = 0.20;   // cm between wheels
 
 int32_t totalEncoderCount1 = 0; 
 int32_t totalEncoderCount2 = 0;
@@ -22,8 +21,6 @@ unsigned long prevRPMMillis = 0;
 
 int32_t netCount1 = 0; 
 int32_t netCount2 = 0;
-volatile float distanceLeft = 0.0; //(meters)
-volatile float distanceRight = 0.0; 
 volatile uint16_t rpm1 = 0;
 volatile uint16_t rpm2 = 0;
 
