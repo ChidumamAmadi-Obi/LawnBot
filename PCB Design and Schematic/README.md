@@ -1,12 +1,12 @@
 # PCB & Schematic Revision Notes
 Current PCB validated the core functionality od the LawnBot, but after testing several areas for improvement became clear.
 
-## 🧪 Key Lessons from the first PCB
+## Key Lessons from the first PCB
 * Peripheral Oversight: Original design did not account for motor encoders and ToF sensors, both of which are critical for precise navigation and closed-loop control.
 * Noise Management: Lack of proper decoupling capacitors resulted in electrical noise that impacted PCB performance.
 * Debugging Limitations: Without test points, indicator LEDs, and clear labeling, diagnosing hardware/software integration issues took longer than it should have.
 
-## ✍️ Improvements in the Next Revision
+## Improvements in the Next Revision
 * Encoder & ToF Integration for Automation: Dedicated connections for wheel encoders and distance sensors will be added for accurate motion control and autonomous driving.
 * Noise Reduction: Strategic placement of decoupling capacitors and filtering components will stabilize power rails and improve overall reliability.
 * Motor Driver Support: Circuit refinements to help the driver handle transients and reduce thermal stress. (Thicker tracks for higher currents, isolating motor driver from other more noise sensitive components).
