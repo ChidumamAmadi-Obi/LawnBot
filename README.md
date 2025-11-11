@@ -11,7 +11,7 @@ Realtime WebSocket communication Demo
 
 ![](https://github.com/user-attachments/assets/c1d89f53-037a-400e-aac7-5eb62932627b)
 
-## 🔧 Current Features 
+## Current Features 
 - Wi-Fi connectivity established through Pico 2 W  
 - WebSocket communication pipeline between Pico and browser
 - Basic motor control via DrRobot driver
