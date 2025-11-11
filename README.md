@@ -60,14 +60,14 @@ RPM = (pulses_in_interval * 60) / (PULSES_PER_REVOLUTION * interval_in_seconds)
 
 ## PCB Development
 first PCB was successfully designed, manufactured, and tested.
-- ✅ Verified core functionality: Pico W2, motor driver, and power delivery
-- ❌ Issues identified:
+- Verified core functionality: Pico W2, motor driver, and power delivery
+- Issues identified:
   * Missing decoupling capacitors led to noise and unwanted voltage spikes
   * No support for motor encoders
   * No ToF sensor integration
   * Lack of test points and indicator LEDs for debugging
 - A redesigned PCB id currently in progress with fixes and explained functionality.
-- 📋 Full details: PCB Design and Schematic ![README.md](https://github.com/ChidumamAmadi-Obi/LawnBot/blob/main/PCB%20Design%20and%20Schematic/README.md)
+- Full details: PCB Design and Schematic ![README.md](https://github.com/ChidumamAmadi-Obi/LawnBot/blob/main/PCB%20Design%20and%20Schematic/README.md)
 
 ## Setup Instructions 
 1) Clone the repo:
