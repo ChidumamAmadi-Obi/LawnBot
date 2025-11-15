@@ -1,4 +1,4 @@
-# LawnBot
+# LawnBot (under construction)
 
 This repository documents the development of a **Wi-Fi-controlled lawn mowing robot** built around a **Raspberry Pi Pico 2 W**. The system uses the Pico's dual-core processor to efficiently handle real-time sensor data, motor control, and network communication concurrently.
 
